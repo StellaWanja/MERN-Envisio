@@ -1,0 +1,24 @@
+
+.patient-item-view{
+    background-color: #FFFFFF;
+    width: 95%;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 7vh;
+    font-size: 3em;
+    margin: 2% 2% 2% 0;
+    /* padding: ; */
+    border-radius: 6px;
+}
+
+.patient-list-title{
+    font-size: 1rem;
+    font-weight: 500;
+}
+.View{
+    font-size: medium;
+    color: #458FF6;
+    cursor: pointer;
+}

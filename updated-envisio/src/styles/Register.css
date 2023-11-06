@@ -1,0 +1,184 @@
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+#grid-container {
+  display: flex;
+  width: 70%;
+}
+
+@media only screen and (max-width: 600px) {
+  #grid-container {
+    width: 100%;
+  }
+  .register-form-container {
+    width: 100%;
+  }
+  .form {
+    width: 80%;
+  }
+  .input-container {
+    width: 100%;
+  }
+}
+.register-form-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 70%;
+  float: right;
+  margin-top: 18vh;
+}
+
+.form {
+  box-sizing: border-box;
+  height: 40vh;
+  padding: 5px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_title {
+  color: #212121;
+  font-family: "Mulish Variable", sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 1vh;
+  text-align: center;
+}
+.login_title {
+  margin-bottom: 10vh;
+}
+
+.center {
+  text-align: center;
+}
+.input-container {
+  height: 6vh;
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #d2d2d2;
+  box-sizing: border-box;
+  font-size: 1vw;
+  font-family: "Mulish Variable", sans-serif;
+  height: 100%;
+  outline: 0;
+  padding: 5px;
+  width: 100%;
+}
+
+.placeholder {
+  color: #bcbcbc;
+  font-family: "Mulish Variable", sans-serif;
+  left: 5px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 400ms, color 400ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  padding-top: 5px;
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #dc2f55;
+}
+
+.form-submit {
+  background-color: #458ff6;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
+#forgot-pwd {
+  float: right;
+}
+.forgot-pwd {
+  margin-top: 5px;
+  font-family: "Mulish Variable", sans-serif;
+}
+
+.to_login {
+  font-family: "Mulish Variable", sans-serif;
+  text-align: center;
+  padding: 5px;
+  font-weight: 700;
+  font-size: 1vw;
+}
+.login-link {
+  text-decoration: none;
+  color: #ec74be;
+  padding-top: 15px;
+}
+#forgot-pwd {
+  align-self: flex-end;
+}
+
+.form-submit-resetpassword {
+  background-color: #458ff6;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+}
+
+.form-submit-create-new-password {
+  background-color: #458ff6;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+}

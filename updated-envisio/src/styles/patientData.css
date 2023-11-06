@@ -1,0 +1,197 @@
+/* *
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* #patient-history-page
+{
+    height: 100%;
+    max-width: 100%;
+    background-color: #EDF7FF;
+    font-family: "Mulish";
+}
+
+.logout
+{
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Mulish";
+    align-items: center;
+    padding: 2em 2em 0 0;
+}
+
+.logout-icon
+{
+    margin-right: 10px;
+    font-size: 1.25em;
+}
+
+.top-row
+{
+    display: flex;
+    justify-content: flex-end;
+    gap: 2em;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-top: 10px;
+    margin-right: 2em;
+}
+
+.patient-history-title
+{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+} */
+
+/* .top-row-container
+{
+    width: 20vw;
+    height: 30vh;
+    margin: 8px auto 2px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+} */
+
+/* #patient-data-content .content-data-title
+{
+    font-size: 0.8em;
+    margin-right: 10px;
+    color: #4D4D4D;
+} */
+
+/* #patient-data-content
+{
+    line-height: 2em;
+} */
+
+/* #patient-history-textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-family: "Mulish";
+    resize: none;
+    outline: none;
+} */
+
+/* .bottom-row
+{
+    display: flex;
+    justify-content: flex-end;
+    gap: 2em;
+    flex-wrap: wrap;
+    margin-top: 1.5em;
+    margin-right: 2em;
+    margin-left: 2em;
+} */
+
+/* .buttons-row
+{
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22em;
+    margin-bottom: 5em;
+} */
+
+/* responsive */
+/* @media screen and (max-width: 600px)
+{
+    .buttons-row
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    #download-btn
+    {
+        width: 100%;
+    }
+    #start-test-btn
+    {
+        width: 100%;
+    }
+} */
+
+.patient-data-wrapper {
+  font-family: "Mulish Variable", sans-serif;
+  width: 56%;
+  margin: 0 30% 0 18%;
+  padding: 1% 1% 0 1%;
+  float: center;
+  height: 100%;
+}
+
+.patient-data-container {
+  display: flex;
+  height: 40%;
+  width: 100%;
+}
+
+.patient-data-div {
+  background-color: #ffffff;
+  border-radius: 3px;
+  width: 48%;
+  height: 90%;
+  margin: auto;
+}
+
+#patient-data-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  font-size: smaller;
+  padding: 3%;
+}
+
+.list-item-data {
+  margin-left: 2%;
+}
+
+#medhistory-text {
+  padding: 2%;
+}
+.patient-data-test-container {
+  background-color: #ffffff;
+  border-radius: 5px;
+  min-height: 35%;
+  margin-top: 2%;
+}
+
+.personal-details-title {
+  padding: 2px;
+  margin: 1% 0;
+}
+#medhistory-title {
+  float: right;
+  margin-right: 27%;
+}
+.form-submit3 {
+  background-color: inherit;
+  border-radius: 12px;
+  border: 1px solid #458ff6;
+  box-sizing: border-box;
+  color: #458ff6;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 70%;
+  align-self: center;
+}
+
+#download-test-btn {
+  width: 30%;
+  float: left;
+  margin-top: 3vh;
+}
+#add-test-btn {
+  width: 30%;
+  float: right;
+  margin-top: 3vh;
+}

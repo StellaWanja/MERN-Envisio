@@ -1,0 +1,15 @@
+.logo {
+  height: 6vh;
+  width: 10vw;
+  padding: 5px;
+  margin-top: 30px;
+  position: fixed;
+  left: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    display: block;
+    width: 80%;
+  }
+}

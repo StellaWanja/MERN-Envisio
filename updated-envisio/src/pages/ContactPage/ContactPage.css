@@ -1,0 +1,91 @@
+.contact-body {
+  background: #f8fafd;
+  position: absolute;
+  width: 100%;
+  font-family: "Mulish Variable", sans-serif;
+}
+
+.header-image {
+  width: 100%;
+}
+
+.header {
+  margin-top: 5%;
+  margin-left: 6%;
+  margin-bottom: 4%;
+}
+
+.form-body {
+  float: left;
+  clear: left;
+  /* margin: 50px; */
+}
+
+.input-section {
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+label {
+  color: #424346cf;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.input-area {
+  background: #f8fafd;
+  border: 2px solid rgba(69, 143, 246, 0.5);
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 40vw;
+  height: 6.5vh;
+  padding-left: 10px;
+}
+.input-area:focus {
+  outline: none;
+  border: 2px solid #458ff6;
+}
+
+.textarea {
+  background: #f8fafd;
+  border: 2px solid rgba(69, 143, 246, 0.5);
+  border-radius: 5px;
+  width: 40vw;
+  height: 20vh;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 10px;
+}
+.textarea:focus {
+  outline: none;
+  border: 2px solid #458ff6;
+}
+
+.input-box {
+  margin-bottom: 10%;
+  margin-left: 5%;
+}
+
+.image {
+  width: 30vw;
+  margin-left: 15%;
+  padding-top: 100px;
+}
+
+.submit-button {
+  background-color: #458ff6;
+  padding: 15px 60px;
+  text-align: center;
+  color: #ffff;
+  font-family: inherit;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 0;
+  width: 25vw;
+  margin: 10% 15%;
+}
+
+.clear {
+  clear: both;
+}

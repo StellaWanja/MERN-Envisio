@@ -1,0 +1,30 @@
+.result-wrapper {
+  font-family: "Mulish Variable", sans-serif;
+  width: 56%;
+  margin: 0 30% 0 18%;
+  padding: 1%;
+  float: center;
+  height: 100%;
+}
+
+#result-title {
+  margin-top: 6%;
+  padding: 1%;
+}
+
+#disclaimer {
+  padding: 2%;
+}
+.result-container {
+  background-color: #ffffff;
+  height: 30%;
+  padding: 10%;
+}
+
+#result-text {
+  font-size: 1.5rem;
+}
+
+#result-word {
+  font-weight: bold;
+}

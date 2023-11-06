@@ -1,0 +1,65 @@
+.add-patient-form-container {
+  font-family: "Mulish Variable", sans-serif;
+  width: 57%;
+  margin: 0 30% 0 18%;
+  padding: 1%;
+  float: center;
+  height: 100%;
+}
+.profile-grid-container {
+  margin-top: 1vh;
+  background-color: #ffffff;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 4vw;
+}
+
+.profile-input {
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  height: 4vh;
+  margin-top: 1vh;
+  width: 100%;
+  font-family: inherit;
+  padding: 5px;
+}
+.profile-input:focus {
+  outline: none;
+  border: 1px solid #458ff6;
+}
+.profile-input-container {
+  width: 55%;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 60%);
+}
+
+.input-text-area {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: 50%;
+  margin-top: 4vh;
+  margin-bottom: 1%;
+  color: #212121;
+}
+#profile-textarea {
+  width: 100%;
+  height: 90%;
+  border: 1px solid #a6a6a6;
+  border-radius: 4px;
+  margin-top: auto;
+}
+
+#add-patient-submit-btn {
+  width: 30%;
+  float: right;
+  margin-top: 2vh;
+}

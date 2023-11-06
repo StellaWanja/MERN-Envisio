@@ -1,0 +1,112 @@
+.footer-images{
+    width: 100%;
+    display: flex;
+    padding-top: 80px;
+    align-items: center;
+}
+
+.image-container{
+    display: grid;
+	grid-template-columns: repeat(3, auto);
+    background-color: #C3E3FE;
+    width: 100%;
+    padding: 2%;
+}
+
+.tech4dev{
+   margin-top: 10%;
+   margin-left: 30%;
+}
+
+.nwt{
+    margin-left: 34%;
+}
+
+.microsoft{
+    margin-top: 10%;
+    margin-left: 20%;
+}
+
+.footer-logo{
+    width: 8vw;
+    padding-top: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.link-list{
+    list-style: none;
+}
+li{
+    padding: 8px;
+    /* text-decoration: none; */
+}
+
+.footer-links{
+    display: block;
+    margin: 20px 200px 20px 200px;
+    /* margin: 2% 20%; */
+
+}
+.footer-links::after {
+    clear: both;
+}
+
+.left-links{
+    float: left;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.social-media{
+    /* display: block; */
+    float: left;
+    margin: auto;
+    padding-left: 4%;
+    width: 30%;
+    text-align: center;
+}
+
+.right-links{
+    float: right;
+    width: 30%;
+    margin-top: 0;
+    padding-left: 13%;
+    /* padding-top: 5%; */
+}
+
+.icon-link {
+    width: 13%;
+    padding: 20px;
+}
+.instagram{
+    width: 15%;
+}
+
+.social-media::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.copyright{
+    float: left;
+}
+
+.top-link{
+    float: right;
+}
+
+.bottom{
+    padding: 50px;
+    display: block;
+}
+.bottom::after {
+    clear:both
+}
+
+
+.clear {
+    clear: both;
+}
