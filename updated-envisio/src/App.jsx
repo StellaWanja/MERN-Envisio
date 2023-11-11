@@ -11,6 +11,10 @@ import Signup from "./pages/Onboarding/Signup/Signup";
 import Login from "./pages/Onboarding/Login/Login";
 import ForgotPassword from "./pages/Onboarding/PasswordChange/ForgotPassword";
 import ResetPassword from "./pages/Onboarding/PasswordChange/ResetPassword";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import PatientData from "./pages/PatientData/PatientData";
+import Prediction from "./pages/Prediction/Prediction";
+import Result from "./pages/Prediction/Result/Result";
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/patient-data" element={<PatientData />} />
+          <Route exact path="/prediction" element={<Prediction />} />
+          <Route exact path='/prediction-result' element={<Result />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

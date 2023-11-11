@@ -48,10 +48,10 @@ function Login() {
 
         Swal.fire({
           title: "Login Successful",
-          text: "login attempt successful",
+          text: "Login attempt successful",
           icon: "success",
-          button: "Close",
         });
+
         localStorage.setItem("accessToken", result.token);
         navigate("/dashboard");
       })
