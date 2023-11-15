@@ -16,8 +16,14 @@ dotenv.config();
 app.use(express.json());
 
 // Middleware for handling CORS POLICY
-// Option 1: Allow All Origins with Default of cors(*)
-app.use(cors());
+const corsOpts = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+  allowedHeaders: ['Content-Type'],
+  exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
 
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
@@ -28,7 +34,6 @@ app.use("/api/v2/predict", predictTestRoute);
 mongoose
   .connect(process.env.mongoDBURL)
   .then(() => {
-    console.log(port);
     app.listen(port);
   })
   .catch((error) => {
