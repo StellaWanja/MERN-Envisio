@@ -11,8 +11,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use((_req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST,PUT')
 
   next();
 });
