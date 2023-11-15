@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv  from "dotenv";
+import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import patientAppRoutes from "./routes/patientAppRoutes.js";
 import testResultAppRoutes from "./routes/testResultAppRoutes.js";
@@ -17,7 +17,6 @@ app.use(express.json());
 // Option 1: Allow All Origins with Default of cors(*)
 app.use(cors());
 
-
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
 app.use("/api/v2/", patientAppRoutes);
@@ -30,6 +29,5 @@ mongoose
     app.listen(process.env.PORT);
   })
   .catch((error) => {
-    response.status(500).send({ message: error.message });
+    return { message: error.message };
   });
-
