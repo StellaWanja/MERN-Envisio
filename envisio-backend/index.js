@@ -10,11 +10,11 @@ import predictTestRoute from "./routes/predictTestRoute.js";
 const app = express();
 const port = process.env.PORT || 5000;
 
-dotenv.config();
 
 //middleware for parsing body
 app.use(express.json());
 
+dotenv.config();
 // Middleware for handling CORS POLICY
 // const corsOpts = {
 //   origin: '*',
