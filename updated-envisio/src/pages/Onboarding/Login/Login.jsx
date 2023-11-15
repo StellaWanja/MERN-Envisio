@@ -81,6 +81,7 @@ function Login() {
                   id="email"
                   className="input"
                   type="email"
+                  name="email"
                   {...register("email", { required: true })}
                   placeholder=" "
                 />
@@ -99,7 +100,7 @@ function Login() {
                   placeholder=" "
                 />
                 <div className="cut" />
-                <label htmlFor="Password" className="placeholder">
+                <label htmlFor="password" className="placeholder">
                   Password
                 </label>
               </div>
@@ -111,8 +112,8 @@ function Login() {
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    name=""
-                    id=""
+                    name="checkedValue"
+                    id="checkedValue"
                     value="checkedValue"
                   />
 

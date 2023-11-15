@@ -17,6 +17,7 @@
   margin-left: 5px;
   margin-top: 0;
   color: #212121;
+  cursor: pointer;
 }
 #logout-text:hover {
   color: #fd5c5c;

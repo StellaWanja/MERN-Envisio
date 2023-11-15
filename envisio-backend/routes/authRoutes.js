@@ -2,8 +2,34 @@ import express, { response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
+import { RANDOM_TOKEN } from "../config.js";
 
 const router = express.Router();
+
+// Middleware to verify the Bearer token and get the user's ID
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization; // Get the Bearer token from the Authorization header
+
+  if (!token || !token.startsWith("Bearer ")) {
+    return res.status(401).json({
+      message: "Unauthorized. Token missing or invalid format.",
+      status: 401,
+    });
+  }
+
+  const tokenValue = token.replace("Bearer ", "");
+
+  jwt.verify(tokenValue, RANDOM_TOKEN, (err, decoded) => {
+    if (err) {
+      return res
+        .status(401)
+        .json({ message: "Failed to authenticate token", status: 401 });
+    }
+
+    req.user = decoded;
+    next();
+  });
+};
 
 // REGISTER
 router.post("/register", async (request, response) => {
@@ -154,7 +180,7 @@ router.post("/login", async (request, response) => {
           //if they do, create jwt
           const token = jwt.sign(
             { userId: user._id, userEmail: user.Email },
-            "RANDOM-TOKEN",
+            RANDOM_TOKEN,
             { expiresIn: "24h" }
           );
 
@@ -162,7 +188,8 @@ router.post("/login", async (request, response) => {
           return response.status(200).json({
             message: "Login Successful",
             email: user.Email,
-            token,
+            userID: user._id,
+            token: token,
           });
         })
         // catch error if any issue comes up in regards
@@ -178,6 +205,37 @@ router.post("/login", async (request, response) => {
     response.status(500).json({ message: error.message, status: 500 });
   }
 });
+
+router.get("/user", verifyToken, async (request, response) => {
+  try {
+    const token = request.headers.authorization;
+    const userId = request.query.userId;
+
+    if (!token || !token.startsWith("Bearer ")) {
+      return response.status(401).json({
+        message: "Unauthorized. Token missing or invalid format.",
+        status: 401,
+      });
+    }
+
+    if (!userId) {
+      return response
+        .status(400)
+        .json({ message: "Missing User ID", status: 400 });
+    }
+
+    const user = await User.findById(userId);
+
+    return response.status(200).json({
+      message: "User retrieved successfully",
+      user,
+      status: 200,
+    });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
 
 //FORGOT PASSWORD
 router.post("/forgot-password", async (request, response) => {

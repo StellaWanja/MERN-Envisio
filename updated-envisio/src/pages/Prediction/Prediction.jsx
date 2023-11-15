@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/stateProvider";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ const Prediction = () => {
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
   const navigate = useNavigate();
+  const patientId = context.state.currentPatient._id;
 
   const predictionHandler = ({age, tumorSize}) => {
     // create data to be sent to the api for validation
@@ -20,7 +21,7 @@ const Prediction = () => {
       TumorSize: tumorSize,
     };
 
-    fetch("http://localhost:5000/api/v2/predict/predict-test", {
+    fetch(`http://localhost:5000/api/v2/predict/predict-test?patientId=${patientId}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -30,12 +31,11 @@ const Prediction = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result["prediction"]);
         context.dispatch({
           type: "ADD_RESULT",
-          payload: result.prediction,
+          payload: result,
         });
-        navigate("/prediction-result");
+        navigate(`/prediction-result?patientId=${patientId}`);
       })
       .catch(() => {
         Swal.fire({
@@ -46,6 +46,13 @@ const Prediction = () => {
         });
       });
   };
+
+  useEffect(() => {
+    if (!context.state.currentPatient && !context.state.userData) {
+      navigate("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context.state.currentPatient, context.state.userData]);
 
   return (
     <>
@@ -68,7 +75,7 @@ const Prediction = () => {
           >
             <div className="prediction-form-grid-container">
               <div className="prediction-input-container">
-                <label htmlFor="age">Email Address</label>
+                <label htmlFor="age">Age</label>
                 <input
                   id="age"
                   {...register("age", { required: true })}
@@ -92,7 +99,7 @@ const Prediction = () => {
                 />
               </div>
             </div>
-            <div>
+            <div className="btn">
               <button
                 className="form-submit"
                 id="prediction-submit-btn"

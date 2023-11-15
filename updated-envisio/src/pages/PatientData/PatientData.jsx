@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../context/stateProvider";
 import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
-import Table from "../../components/Table";
+//import Table from "../../components/Table";
 import "../../styles/patientData.css";
 import Swal from "sweetalert2";
 import styled from "styled-components";
@@ -36,59 +36,80 @@ const Styles = styled.div`
   }
 `;
 
-function PatientData() {
+const PatientData = () => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  const patientId = context.state.currentPatient.id;
+  const patientId = context.state.currentPatient._id;
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  function changeRoute() {
-    let path = `/prediction`;
+  const changeRoute = () => {
+    let path = `/prediction?patientId=${patientId}`;
     navigate(path);
-  }
-
-  function viewTestResults() {
-    // fetch(
-    //   `https://envisio-001.herokuapp.com/api/v1/TestResult/all-results?patientId=${patientId}`,
-    //   //allow for use of bearer authentication token
-    //   { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
-    // )
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     // context.dispatch({
-    //     //     type: "ADD_RESULT",
-    //     //     payload: result,
-    //     // })
-    //     setResults(result);
-    //     console.log(result);
-    //   })
-    //   .catch((err) => {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "Unable to complete request. Please try again after some time",
-    //       icon: "error",
-    //       button: "Close",
-    //     });
-    //     console.log({ err });
-    //   });
-  }
+  };
 
   useEffect(() => {
-    viewTestResults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [patientId]);
-
-  let test, result, date;
-
-  {
-    {
-      results.map((res) => {
-        result = res.result;
-        test = res.test;
-        date = res.date;
-      });
+    if (context.state.currentPatient && context.state.userData) {
+      setLoading(true);
+      viewTestResults();
+    } else {
+      navigate("/login");
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context.state.currentPatient, context.state.userData]);
+
+  const viewTestResults = () => {
+    fetch(
+      `http://localhost:5000/api/v2/patient/all-tests?patientId=${patientId}`,
+      //allow for use of bearer authentication token
+      { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        context.dispatch({
+          type: "ADD_RESULT",
+          payload: result.tests,
+        });
+
+        setResults(result.tests);
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Error!",
+          text: "Unable to complete request. Please try again after some time",
+          icon: "error",
+          button: "Close",
+        });
+      });
+    setLoading(false);
+  };
+
+  const loadingText = (
+    <tr>
+      <td style={{ textAlign: "center" }} colSpan={3}>
+        Loading...
+      </td>
+    </tr>
+  );
+
+  const res = results.map((testResult) => {
+    const { _id, Date, Result } = testResult;
+    return (
+      <tr key={_id}>
+        <td>Breast Cancer</td>
+        <td>{Date}</td>
+        <td>{Result}</td>
+      </tr>
+    );
+  });
+
+  const noDataFound = (
+    <tr>
+      <td style={{ textAlign: "center" }} colSpan={3}>
+        No data available
+      </td>
+    </tr>
+  );
 
   return (
     <>
@@ -157,40 +178,39 @@ function PatientData() {
           <div className="patient-data-test-container">
             <Styles>
               <table>
-                <tr>
-                  <th>Test</th>
-                  <th>Date</th>
-                  <th>Result</th>
-                </tr>
+                <thead>
+                  <tr>
+                    <th>Test</th>
+                    <th>Date</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
 
-                {results.map((testResult) => {
-                  const { id, test, date, result } = testResult;
-                  return (
-                    <tr key={id}>
-                      <td>{test}</td>
-                      <td>{date}</td>
-                      <td>{result}</td>
-                    </tr>
-                  );
-                })}
+                <tbody>
+                  {loading && results.length === 0 && loadingText}
+                  {!loading && results.length > 0 && res}
+                  {!loading && results.length === 0 && noDataFound}
+                </tbody>
               </table>
             </Styles>
           </div>
 
-          <button
-            type="submit"
-            className="form-submit"
-            id="add-test-btn"
-            onClick={changeRoute}
-          >
-            Start Test
-          </button>
+          <div className="btn">
+            <button
+              type="submit"
+              className="form-submit"
+              id="add-test-btn"
+              onClick={changeRoute}
+            >
+              Start Test
+            </button>
+          </div>
         </div>
 
         <RightSideBar />
       </div>
     </>
   );
-}
+};
 
 export default PatientData;

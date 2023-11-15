@@ -1,22 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
-import Swal from "sweetalert2";
 import { AppContext } from "../../context/stateProvider";
 import "./Dashboard.css";
 // import SearchBar from "material-ui-search-bar";
 import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
 import PatientListView from "../../components/PatientListView";
+import Swal from "sweetalert2";
 
-const Dashboard = () => {
+function Dashboard() {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-
-  const token = context.state.userData.token;
-  const userid = context.state.userData.userID;
   let hasNoPatient = null;
-
-  const getPatientList = () => {
+  
+  function getPatientList() {
+    const userid = context.state.userData.userID;
     fetch(
       `http://localhost:5000/api/v2/all-patients?userId=${userid}`,
       //allow for use of bearer authentication token
@@ -47,13 +45,13 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    if(!token && !userid){
-      console.log("login");
-    } else {
+    if(context.state.userData){
       getPatientList();
+    } else {
+      navigate("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userid, token]);
+  }, [context.state.userData]);
 
   const routeChange = () => {
     let path = `/add-patient`;
@@ -69,7 +67,7 @@ const Dashboard = () => {
         <div style={{ display: "flex", marginTop: "7%" }}>
           <div className="helloDoc">
             <h2 style={{ fontSize: "30px" }}>
-              Hello {context.state.userData.firstName}
+              Hello {context.state.userData ? context.state.userData.firstName : ''}
             </h2>
             <span style={{ color: "#7A7A7A", fontSize: "20px" }}>
               Welcome to your Envisio Dashboard.

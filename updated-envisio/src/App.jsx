@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/patient-data" element={<PatientData />} />
           <Route exact path="/prediction" element={<Prediction />} />
-          <Route exact path='/prediction-result' element={<Result />} />
+          <Route exact path="/prediction-result" element={<Result />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

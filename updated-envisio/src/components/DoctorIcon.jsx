@@ -1,21 +1,28 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/stateProvider";
 import "../styles/patientData.css";
 
 const DoctorIcon = () => {
   const context = useContext(AppContext);
-  const userId = context.state.userData.userID;
+  const navigate = useNavigate();
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v2/auth/user?userId=${userId}`, {
-      headers: { Authorization: `Bearer ${context.state.userData.token}` },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setUser(result.user);
-      });
-  }, [context.state.userData.token, userId]);
+    if (context.state.userData) {
+      const userId = context.state.userData.userID;
+      fetch(`http://localhost:5000/api/v2/auth/user?userId=${userId}`, {
+        headers: { Authorization: `Bearer ${context.state.userData.token}` },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          setUser(result.user);
+        });
+    } else {
+      navigate("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context.state.userData]);
 
   return (
     <section>

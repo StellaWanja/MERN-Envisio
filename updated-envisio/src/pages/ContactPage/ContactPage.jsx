@@ -17,15 +17,14 @@ const ContactPage = () => {
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID).then(
       // eslint-disable-next-line no-unused-vars
       (result) => {
-        Swal({
+        Swal.fire({
           icon: "success",
           title: "Message Sent Successfully",
-          button: "OK",
         });
         e.target.reset();
       },
       (error) => {
-        return Swal({
+        Swal.fire({
           icon: "error",
           title: "Ooops, something went wrong",
           text: error.text,

@@ -86,3 +86,7 @@
     margin: auto;
   }
 }
+
+.swal2-popup {
+  font-family: "Mulish Variable", sans-serif;
+}

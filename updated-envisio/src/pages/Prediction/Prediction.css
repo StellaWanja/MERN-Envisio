@@ -15,19 +15,23 @@
 }
 .prediction-form-grid-container {
   background-color: #ffffff;
-  height: 80%;
-  width: 90%;
+  height: 60%;
+  width: 80%;
   padding: 2vh 2vw;
-  display: grid;
-  grid-template-columns: repeat(3, 33%);
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
 .prediction-input-container {
-  width: 60%;
+  width: 100%;
   margin-top: 1vh;
   display: flex;
   flex-direction: column;
+}
+
+.prediction-input-container label{
+  text-transform: uppercase;
 }
 
 .prediction-input {
@@ -46,7 +50,14 @@
 }
 
 #prediction-submit-btn {
-  width: 30%;
-  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
   margin-top: 3vh;
+  margin-right: 20px;
+}
+
+.swal2-popup {
+  font-family: "Mulish Variable", sans-serif;
 }

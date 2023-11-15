@@ -1,24 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import Swal from "sweetalert2";
 import { AppContext } from "../../../context/stateProvider";
 import LeftSideBar from "../../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../../components/Sidebar/RightSideBar/RightSideBar";
 import "./Result.css";
-import Swal from "sweetalert2";
 
 const Result = () => {
   const navigate = useNavigate();
   const context = useContext(AppContext);
-
-  if(context.state.userData.userID === null) navigate('/login');
+  const patientId = context.state.currentPatient._id;
 
   const saveResults = () => {
     let newResult = {
-      PatientId: context.state.currentPatient.id,
-      Result: context.state.testResult,
+      PatientId: patientId,
+      Result: context.state.testResult.prediction,
+      Date: context.state.testResult.date
     };
 
-    fetch("https://envisio-001.herokuapp.com/api/v1/TestResult/test-result", {
+    fetch(`http://localhost:5000/api/v2/patient/save-test?patientId=${patientId}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -27,27 +27,32 @@ const Result = () => {
       body: JSON.stringify(newResult),
     })
       .then((res) => res.json())
+      // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        console.log(result);
-
         Swal.fire({
           title: "Result saved!",
           text: "Test result saved successfully",
           icon: "success",
-          button: "Close",
         });
 
-        navigate("/patient-data");
+        navigate(`/patient-data?patientId=${patientId}`);
       })
       .catch(() => {
         Swal.fire({
           title: "Error!",
           text: "Unable to complete request. Please try again after some time",
           icon: "error",
-          button: "Close",
         });
       });
-  }
+  };
+
+  useEffect(() => {
+    if (!context.state.currentPatient && !context.state.userData) {
+      navigate("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context.state.currentPatient, context.state.userData]);
+
 
   return (
     <>
@@ -63,20 +68,24 @@ const Result = () => {
           <div className="result-container">
             <p id="result-text">
               Based on the inputs provided, results show that patient may have{" "}
-              {context.state.testResult === "Indeterminate" ? "" : "a"}{" "}
-              <span id="result-word">{context.state.testResult}</span> tumor.{" "}
-              {context.state.testResult === "Indeterminate" ? "Kindly handle more tests." : ""}{" "}
+              {context.state.testResult.prediction === "Indeterminate" ? "" : "a"}{" "}
+              <span id="result-word">{context.state.testResult.prediction}</span> tumor.{" "}
+              {context.state.testResult.prediction === "Indeterminate"
+                ? "Kindly handle more tests."
+                : ""}{" "}
             </p>
           </div>
 
-          <button
-            type="submit"
-            className="form-submit"
-            id="add-test-btn"
-            onClick={saveResults}
-          >
-            Save
-          </button>
+          <div className="btn">
+            <button
+              type="submit"
+              className="form-submit"
+              id="add-test-btn"
+              onClick={saveResults}
+            >
+              Save
+            </button>
+          </div>
         </div>
 
         <RightSideBar />
