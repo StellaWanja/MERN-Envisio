@@ -27,7 +27,6 @@ const Register = () => {
         title: "Invalid Email",
         text: "Please enter a valid email address",
         icon: "error",
-        button: "Close",
       });
     }
     //  confirm if passowords entered match
@@ -36,7 +35,6 @@ const Register = () => {
         title: "Invalid Credentials",
         text: "Passwords do not match",
         icon: "error",
-        button: "Close",
       });
     }
 
@@ -63,7 +61,6 @@ const Register = () => {
             title: result.title,
             text: result.message,
             icon: "error",
-            button: null,
           });
         } else {
           context.dispatch({
@@ -75,7 +72,6 @@ const Register = () => {
             title: "Registration Successful",
             text: " ",
             icon: "success",
-            button: "Close",
           });
           navigate("/login");
         }
@@ -87,7 +83,6 @@ const Register = () => {
           title: "Unsuccessful!",
           text: err.message,
           icon: "error",
-          button: "Close",
         });
       });
   };
