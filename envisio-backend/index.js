@@ -17,9 +17,9 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 const corsOpts = {
-  origin: '*',
+  origin: 'https://envisio-backend.vercel.app/',
   credentials: true,
-  methods: ['GET','POST','HEAD','PUT','PATCH'],
+  methods: ['GET','POST','PUT','PATCH'],
   allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
   exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
 };
