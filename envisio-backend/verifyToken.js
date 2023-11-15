@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { RANDOM_TOKEN } from "./config.js";
+import { RANDOM_TOKEN } from "./tokenGenerator.js";
 
 // Middleware to verify the Bearer token and get the user's ID
 const verifyToken = (req, res, next) => {
