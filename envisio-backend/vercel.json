@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "https://envisio-backend.vercel.app",
+      "methods": ["GET", "POST", "PATCH"]
+    }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+}
