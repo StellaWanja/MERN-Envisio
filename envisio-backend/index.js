@@ -10,6 +10,7 @@ import predictTestRoute from "./routes/predictTestRoute.js";
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(cors());
 
 //middleware for parsing body
 app.use(express.json());
@@ -23,7 +24,6 @@ dotenv.config();
 //   allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
 //   exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
 // };
-app.use(cors({origin: 'https://envisio-frontend.vercel.app'}));
 
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
