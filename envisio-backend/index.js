@@ -31,3 +31,5 @@ mongoose
   .catch((error) => {
     return { message: error.message };
   });
+
+export default app;
