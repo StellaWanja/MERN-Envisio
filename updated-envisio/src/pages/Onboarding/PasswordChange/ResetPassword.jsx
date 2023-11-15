@@ -22,7 +22,7 @@ function ResetPassword() {
     };
 
     // make API call
-    fetch("http://localhost:5000/api/v2/auth/reset-password", {
+    fetch("https://envisio-backend.vercel.app/api/v2/auth/reset-password", {
       method: "PATCH",
       headers: {
         Accept: "application/json",

@@ -21,7 +21,7 @@ const Prediction = () => {
       TumorSize: tumorSize,
     };
 
-    fetch(`http://localhost:5000/api/v2/predict/predict-test?patientId=${patientId}`, {
+    fetch(`https://envisio-backend.vercel.app/api/v2/predict/predict-test?patientId=${patientId}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
