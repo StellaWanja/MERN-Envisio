@@ -26,10 +26,8 @@ app.use("/api/v2/predict", predictTestRoute);
 mongoose
   .connect(mongoDBURL)
   .then(() => {
-    console.log("app connected to db");
     app.listen(PORT);
   })
   .catch((error) => {
     response.status(500).send({ message: error.message });
-    console.log(error);
   });

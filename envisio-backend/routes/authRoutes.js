@@ -181,7 +181,7 @@ router.post("/login", async (request, response) => {
           const token = jwt.sign(
             { userId: user._id, userEmail: user.Email },
             RANDOM_TOKEN,
-            { expiresIn: "24h" }
+            { expiresIn: "1h" }
           );
 
           //   return success response
