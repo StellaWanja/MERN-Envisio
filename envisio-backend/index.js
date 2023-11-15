@@ -10,6 +10,13 @@ import predictTestRoute from "./routes/predictTestRoute.js";
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use((_req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+
+  next();
+});
+
 app.use(cors({ credentials: true }));
 
 //middleware for parsing body
