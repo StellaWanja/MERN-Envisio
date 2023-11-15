@@ -16,14 +16,14 @@ dotenv.config();
 app.use(express.json());
 
 // Middleware for handling CORS POLICY
-const corsOpts = {
-  origin: '*',
-  credentials: true,
-  methods: ['GET','POST','PUT','PATCH'],
-  allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
-  exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
-};
-app.use(cors(corsOpts));
+// const corsOpts = {
+//   origin: '*',
+//   credentials: true,
+//   methods: ['GET','POST','PUT','PATCH'],
+//   allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
+//   exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
+// };
+app.use(cors());
 
 app.use(function (req, res, next) {
 
