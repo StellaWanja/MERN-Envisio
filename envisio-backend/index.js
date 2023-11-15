@@ -23,7 +23,7 @@ app.use(express.json());
 //   allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
 //   exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
 // };
-app.use(cors({origin: '*'}));
+app.use(cors({origin: 'https://envisio-frontend.vercel.app'}));
 
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
