@@ -8,6 +8,8 @@ import testResultAppRoutes from "./routes/testResultAppRoutes.js";
 import predictTestRoute from "./routes/predictTestRoute.js";
 
 const app = express();
+const port = process.env.PORT || 5000;
+
 dotenv.config();
 
 //middleware for parsing body
@@ -26,7 +28,8 @@ app.use("/api/v2/predict", predictTestRoute);
 mongoose
   .connect(process.env.mongoDBURL)
   .then(() => {
-    app.listen(process.env.PORT);
+    console.log(port);
+    app.listen(port);
   })
   .catch((error) => {
     return { message: error.message };
