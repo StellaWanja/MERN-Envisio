@@ -47,7 +47,7 @@ const Register = () => {
       ConfirmPassword: confirmpassword,
     };
 
-    fetch(`https://envisio-backend.vercel.app/api/v2/auth/register`, {
+    fetch(`https://real-gray-gosling-coat.cyclic.app/api/v2/auth/register`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

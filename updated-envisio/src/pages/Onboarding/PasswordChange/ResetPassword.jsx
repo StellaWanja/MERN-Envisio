@@ -22,7 +22,7 @@ function ResetPassword() {
     };
 
     // make API call
-    fetch("https://envisio-backend.vercel.app/api/v2/auth/reset-password", {
+    fetch("https://real-gray-gosling-coat.cyclic.app/api/v2/auth/reset-password", {
       method: "PATCH",
       headers: {
         Accept: "application/json",

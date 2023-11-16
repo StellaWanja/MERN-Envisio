@@ -23,7 +23,7 @@ function Login() {
       Password: password,
     };
 
-    fetch("https://envisio-backend.vercel.app/api/v2/auth/login", {
+    fetch("https://real-gray-gosling-coat.cyclic.app/api/v2/auth/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",

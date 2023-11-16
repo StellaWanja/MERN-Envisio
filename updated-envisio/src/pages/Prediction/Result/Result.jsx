@@ -18,7 +18,7 @@ const Result = () => {
       Date: context.state.testResult.date
     };
 
-    fetch(`https://envisio-backend.vercel.app/api/v2/patient/save-test?patientId=${patientId}`, {
+    fetch(`https://real-gray-gosling-coat.cyclic.app/api/v2/patient/save-test?patientId=${patientId}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -16,7 +16,7 @@ function Dashboard() {
   function getPatientList() {
     const userid = context.state.userData.userID;
     fetch(
-      `https://envisio-backend.vercel.app/api/v2/all-patients?userId=${userid}`,
+      `https://real-gray-gosling-coat.cyclic.app/api/v2/all-patients?userId=${userid}`,
       //allow for use of bearer authentication token
       { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
     )
