@@ -2,11 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import serverless from "serverless-http";
-import authRoutes from "../routes/authRoutes.js";
-import patientAppRoutes from "../routes/patientAppRoutes.js";
-import testResultAppRoutes from "../routes/testResultAppRoutes.js";
-import predictTestRoute from "../routes/predictTestRoute.js";
+import authRoutes from "./routes/authRoutes.js";
+import patientAppRoutes from "./routes/patientAppRoutes.js";
+import testResultAppRoutes from "./routes/testResultAppRoutes.js";
+import predictTestRoute from "./routes/predictTestRoute.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -35,10 +34,10 @@ dotenv.config();
 // };
 
 //routes for apis
-app.use("/.netlify/functions/api/v2/auth", authRoutes);
-app.use("/.netlify/functions/api/v2/", patientAppRoutes);
-app.use("/.netlify/functions/api/v2/patient", testResultAppRoutes);
-app.use("/.netlify/functions/api/v2/predict", predictTestRoute);
+app.use("/api/v2/auth", authRoutes);
+app.use("/api/v2/", patientAppRoutes);
+app.use("/api/v2/patient", testResultAppRoutes);
+app.use("/api/v2/predict", predictTestRoute);
 
 mongoose
   .connect(process.env.mongoDBURL)
@@ -49,5 +48,4 @@ mongoose
     return { message: error.message };
   });
 
-export const handler = serverless(app);
 export default app;
