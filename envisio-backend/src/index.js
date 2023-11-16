@@ -10,28 +10,30 @@ import predictTestRoute from "./routes/predictTestRoute.js";
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use((_req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST,PUT')
+// app.use((_req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,POST,PUT')
 
-  next();
-});
+//   next();
+// });
 
-app.use(cors({ credentials: true }));
+// app.use(cors({ credentials: true }));
 
 //middleware for parsing body
 app.use(express.json());
 
 dotenv.config();
 // Middleware for handling CORS POLICY
-// const corsOpts = {
-//   origin: '*',
-//   credentials: true,
-//   methods: ['GET','POST','PUT','PATCH'],
-//   allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
-//   exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
-// };
+const corsOpts = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET','POST','PUT','PATCH'],
+  allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
+  exposedHeaders: ['Content-Type', 'Access-Control-Allow-Origin']
+};
+
+app.use(cors(corsOpts));
 
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
