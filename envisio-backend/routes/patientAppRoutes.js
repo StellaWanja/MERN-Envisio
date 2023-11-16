@@ -1,6 +1,6 @@
 import express from "express";
 import { Patient } from "../models/Patient.js";
-import verifyToken from "../verifyToken.js";
+import verifyToken from "../token/verifyToken.js";
 
 const router = express.Router();
 

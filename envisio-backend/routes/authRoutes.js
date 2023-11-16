@@ -2,8 +2,8 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
-import { RANDOM_TOKEN } from "../tokenGenerator.js";
-import verifyToken from "../verifyToken.js";
+import { RANDOM_TOKEN } from "../token/tokenGenerator.js";
+import verifyToken from "../token/verifyToken.js";
 
 const router = express.Router();
 

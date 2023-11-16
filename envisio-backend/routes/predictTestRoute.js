@@ -1,5 +1,5 @@
 import express from "express";
-import verifyToken from "../verifyToken.js";
+import verifyToken from "../token/verifyToken.js";
 
 const router = express.Router();
 
@@ -47,20 +47,23 @@ router.post("/predict-test", verifyToken, async (request, response) => {
     const utcDate = new Date();
     const localDate = new Date(utcDate.getTime());
 
-    const formattedDate = localDate.toLocaleString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
+    const formattedDate = localDate.toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     });
 
-    const date = formattedDate.replace(',', ' at');
+    const date = formattedDate.replace(",", " at");
 
-    return response
-      .status(201)
-      .json({ message: "Test successfull", prediction, date: date, status: 201 });
+    return response.status(201).json({
+      message: "Test successfull",
+      prediction,
+      date: date,
+      status: 201,
+    });
   } catch (error) {
     response.status(500).send({ message: error.message });
   }
