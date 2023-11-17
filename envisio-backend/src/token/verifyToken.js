@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { RANDOM_TOKEN } from "./tokenGenerator.js";
 
 // Middleware to verify the Bearer token and get the user's ID
 const verifyToken = (req, res, next) => {
@@ -11,10 +10,9 @@ const verifyToken = (req, res, next) => {
       status: 401,
     });
   }
-
   const tokenValue = token.replace("Bearer ", "");
 
-  jwt.verify(tokenValue, RANDOM_TOKEN, (err, decoded) => {
+  jwt.verify(tokenValue, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res
         .status(401)

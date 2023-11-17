@@ -20,7 +20,6 @@ const port = process.env.PORT || 5000;
 
 // app.use(cors({ credentials: true }));
 app.use(cors());
-app.options('*', cors()) 
 
 //middleware for parsing body
 app.use(express.json());
@@ -36,7 +35,6 @@ dotenv.config();
 // };
 
 // app.use(cors(corsOpts));
-
 //routes for apis
 app.use("/api/v2/auth", authRoutes);
 app.use("/api/v2/", patientAppRoutes);

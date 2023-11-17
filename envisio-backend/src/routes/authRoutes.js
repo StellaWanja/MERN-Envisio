@@ -2,7 +2,6 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
-import { RANDOM_TOKEN } from "../token/tokenGenerator.js";
 import verifyToken from "../token/verifyToken.js";
 
 const router = express.Router();
@@ -156,7 +155,7 @@ router.post("/login", async (request, response) => {
           //if they do, create jwt
           const token = jwt.sign(
             { userId: user._id, userEmail: user.Email },
-            RANDOM_TOKEN,
+            process.env.JWT_SECRET,
             { expiresIn: "1h" }
           );
 
