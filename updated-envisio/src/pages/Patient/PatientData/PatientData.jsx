@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import { AppContext } from "../../context/stateProvider";
-import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
-import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
-//import Table from "../../components/Table";
-import "../../styles/patientData.css";
 import Swal from "sweetalert2";
 import styled from "styled-components";
+import { AppContext } from "../../../context/stateProvider";
+import LeftSideBar from "../../../components/Sidebar/LeftSideBar/LeftSideBar";
+import RightSideBar from "../../../components/Sidebar/RightSideBar/RightSideBar";
+//import Table from "../../components/Table";
+import "../../../styles/patientData.css";
 
 const Styles = styled.div`
   table {

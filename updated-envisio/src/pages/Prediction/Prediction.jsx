@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../../context/stateProvider";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -13,9 +13,15 @@ const Prediction = () => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const patientId = context.state.currentPatient._id;
-
-  const predictionHandler = ({age, tumorSize}) => {
+  
+  const patientAge = new Date(context.state.currentPatient.DOB).getFullYear();
+  const currentDate = new Date().getFullYear();
+  const ageDiff = currentDate - patientAge;
+  const ageRef = useRef(0);
+  
+  const predictionHandler = ({tumorSize}) => {
     // create data to be sent to the api for validation
+    const age = ageRef.current.value;
     let userinput = {
       Age: age,
       TumorSize: tumorSize,
@@ -48,10 +54,12 @@ const Prediction = () => {
   };
 
   useEffect(() => {
-    if (!context.state.currentPatient && !context.state.userData) {
+    if (!context.state.currentPatient || !context.state.userData) {
       navigate("/login");
+    } else {
+      ageRef.current.value = ageDiff;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.state.currentPatient, context.state.userData]);
 
   return (
@@ -78,12 +86,14 @@ const Prediction = () => {
                 <label htmlFor="age">Age</label>
                 <input
                   id="age"
-                  {...register("age", { required: true })}
+                  ref={ageRef}
+                  // {...register("age", { required: true })}
                   className="prediction-input"
                   type="number"
-                  min="1"
+                  // min="1"
                   name="age"
-                  step="1"
+                  readOnly
+                  // step="1"
                 />
               </div>
               <div className="prediction-input-container">

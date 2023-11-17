@@ -12,7 +12,7 @@ function Dashboard() {
   const context = useContext(AppContext);
   const navigate = useNavigate();
   let hasNoPatient = null;
-  
+
   function getPatientList() {
     const userid = context.state.userData.userID;
     fetch(
@@ -22,7 +22,7 @@ function Dashboard() {
     )
       .then((res) => res.json())
       .then((result) => {
-        const {patients} = result;
+        const { patients } = result;
 
         if (patients.length !== 0) {
           hasNoPatient = false;
@@ -45,7 +45,7 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    if(context.state.userData){
+    if (context.state.userData) {
       getPatientList();
     } else {
       navigate("/login");
@@ -67,7 +67,8 @@ function Dashboard() {
         <div style={{ display: "flex", marginTop: "7%" }}>
           <div className="helloDoc">
             <h2 style={{ fontSize: "30px" }}>
-              Hello {context.state.userData ? context.state.userData.firstName : ''}
+              Hello{" "}
+              {context.state.userData ? context.state.userData.firstName : ""}
             </h2>
             <span style={{ color: "#7A7A7A", fontSize: "20px" }}>
               Welcome to your Envisio Dashboard.

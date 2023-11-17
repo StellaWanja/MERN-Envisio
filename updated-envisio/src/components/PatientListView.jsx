@@ -10,9 +10,12 @@ function patientListView({ item }) {
   const navigate = useNavigate();
 
   function viewPatientData() {
-    fetch(`https://envisio-backend.vercel.app/api/v2/patient?patientId=${item._id}`, {
-      headers: { Authorization: `Bearer ${context.state.userData.token}` },
-    })
+    fetch(
+      `https://real-gray-gosling-coat.cyclic.app/api/v2/patient?patientId=${item._id}`,
+      {
+        headers: { Authorization: `Bearer ${context.state.userData.token}` },
+      }
+    )
       .then((res) => res.json())
       .then((result) => {
         context.dispatch({
