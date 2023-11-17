@@ -7,6 +7,7 @@ const router = express.Router();
 // CREATE PATIENT
 router.post("/new-patient", verifyToken, async (request, response) => {
   const token = request.headers.authorization;
+  const userId = request.query.userId;
 
   if (!token || !token.startsWith("Bearer ")) {
     return res.status(401).json({
@@ -15,7 +16,11 @@ router.post("/new-patient", verifyToken, async (request, response) => {
     });
   }
 
-  const user = request.user;
+  if (!userId) {
+    return response
+      .status(400)
+      .json({ message: "Missing User ID", status: 400 });
+  }
 
   try {
     const {
@@ -51,7 +56,7 @@ router.post("/new-patient", verifyToken, async (request, response) => {
       Height: Height,
       Weight: Weight,
       FamilyMedicalHistory: FamilyMedicalHistory,
-      User: user.userId,
+      User: userId,
     };
 
     const appUser = await Patient.create(newPatient);
