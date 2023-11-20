@@ -130,4 +130,38 @@ router.get("/patient", verifyToken, async (request, response) => {
   }
 });
 
+router.delete("/delete-patient", verifyToken, async (request, response) => {
+  try {
+    const token = request.headers.authorization;
+    const patientId = request.query.patientId;
+
+    if (!token || !token.startsWith("Bearer ")) {
+      return response.status(401).json({
+        message: "Unauthorized. Token missing or invalid format.",
+        status: 401,
+      });
+    }
+
+    if (!patientId) {
+      return response
+        .status(400)
+        .json({ message: "Missing Patient ID", status: 400 });
+    }
+
+    const deletedItem = await Patient.findByIdAndDelete(patientId);
+
+    if (!deletedItem) {
+      return response
+        .status(404)
+        .json({ message: "Patient not found", status: 404 });
+    }
+
+    response
+      .status(200)
+      .json({ message: "Patient deleted successfully", status: 200 });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
 export default router;
