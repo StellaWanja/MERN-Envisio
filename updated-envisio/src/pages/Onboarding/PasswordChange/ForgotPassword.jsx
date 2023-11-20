@@ -16,7 +16,7 @@ function ForgotPassword() {
       Email: email,
     };
 
-    fetch("https://real-gray-gosling-coat.cyclic.app/api/v2/auth/forgot-password", {
+    fetch("https://lime-weary-wombat.cyclic.app/api/v2/auth/forgot-password", {
       method: "POST",
       headers: {
         "content-type": "application/json",

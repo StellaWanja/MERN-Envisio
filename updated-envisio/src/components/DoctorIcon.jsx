@@ -21,7 +21,7 @@ const DoctorIcon = () => {
 
   const doctorInfo = () => {
     const userId = context.state.userData.userID;
-    fetch(`http://localhost:5000/api/v2/auth/user?userId=${userId}`, {
+    fetch(`https://lime-weary-wombat.cyclic.app/api/v2/auth/user?userId=${userId}`, {
       headers: { Authorization: `Bearer ${context.state.userData.token}` },
     })
       .then((res) => res.json())

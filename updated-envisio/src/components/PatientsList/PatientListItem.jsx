@@ -11,7 +11,7 @@ const PatientListItem = ({ patient, onDelete }) => {
 
   function viewPatientData() {
     fetch(
-      `http://localhost:5000/api/v2/patient?patientId=${patient._id}`,
+      `https://lime-weary-wombat.cyclic.app/api/v2/patient?patientId=${patient._id}`,
       {
         headers: { Authorization: `Bearer ${context.state.userData.token}` },
       }
@@ -35,7 +35,7 @@ const PatientListItem = ({ patient, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v2/delete-patient?patientId=${patient._id}`, {
+      const response = await fetch(`https://lime-weary-wombat.cyclic.app/api/v2/delete-patient?patientId=${patient._id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${context.state.userData.token}` }
       });

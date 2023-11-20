@@ -16,7 +16,7 @@ function Dashboard() {
   function getPatientList() {
     const userid = context.state.userData.userID;
     fetch(
-      `http://localhost:5000/api/v2/all-patients?userId=${userid}`,
+      `https://lime-weary-wombat.cyclic.app/api/v2/all-patients?userId=${userid}`,
       //allow for use of bearer authentication token
       { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
     )

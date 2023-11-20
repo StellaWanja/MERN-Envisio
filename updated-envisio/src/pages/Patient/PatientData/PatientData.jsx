@@ -60,7 +60,7 @@ const PatientData = () => {
 
   const viewTestResults = () => {
     fetch(
-      `http://localhost:5000/api/v2/patient/all-tests?patientId=${patientId}`,
+      `https://lime-weary-wombat.cyclic.app/api/v2/patient/all-tests?patientId=${patientId}`,
       //allow for use of bearer authentication token
       { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
     )

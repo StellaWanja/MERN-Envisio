@@ -22,7 +22,7 @@ function ResetPassword() {
     };
 
     // make API call
-    fetch("https://real-gray-gosling-coat.cyclic.app/api/v2/auth/reset-password", {
+    fetch("https://lime-weary-wombat.cyclic.app/api/v2/auth/reset-password", {
       method: "PATCH",
       headers: {
         Accept: "application/json",

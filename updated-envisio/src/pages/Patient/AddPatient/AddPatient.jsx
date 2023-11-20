@@ -27,7 +27,7 @@ const AddNewPatient = () => {
     };
 
     fetch(
-      `http://localhost:5000/api/v2/new-patient?userId=${userid}`,
+      `https://lime-weary-wombat.cyclic.app/api/v2/new-patient?userId=${userid}`,
       {
         method: "POST",
         headers: {
