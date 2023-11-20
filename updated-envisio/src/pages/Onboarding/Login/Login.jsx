@@ -23,7 +23,7 @@ function Login() {
       Password: password,
     };
 
-    fetch("https://real-gray-gosling-coat.cyclic.app/api/v2/auth/login", {
+    fetch("http://localhost:5000/api/v2/auth/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -36,8 +36,7 @@ function Login() {
           return Swal.fire({
             title: "Invalid Credentials",
             text: "Kindly input correct details",
-            icon: "error",
-            button: "Close",
+            icon: "error"
           });
         }
 
@@ -59,8 +58,7 @@ function Login() {
         Swal.fire({
           title: "Error!",
           text: err.message,
-          icon: "error",
-          button: "Close",
+          icon: "error"
         });
       });
   };

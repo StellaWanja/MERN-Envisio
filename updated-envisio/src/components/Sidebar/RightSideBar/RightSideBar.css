@@ -93,3 +93,15 @@
 .calendar-container {
   align-self: center;
 }
+
+@media screen and (max-width: 768px) {
+  .right-column{
+    width: 15%;
+  }
+  .main-container{
+    display: none;
+  }
+  #logout-text{
+    display: none;
+  }
+}

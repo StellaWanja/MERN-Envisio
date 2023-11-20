@@ -1,38 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { AppContext } from "../../context/stateProvider";
 import "./Dashboard.css";
-// import SearchBar from "material-ui-search-bar";
 import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
-import PatientListView from "../../components/PatientListView";
+import PatientListView from "../../components/PatientsList/PatientListView";
 import Swal from "sweetalert2";
 
 function Dashboard() {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  let hasNoPatient = null;
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function getPatientList() {
     const userid = context.state.userData.userID;
     fetch(
-      `https://real-gray-gosling-coat.cyclic.app/api/v2/all-patients?userId=${userid}`,
+      `http://localhost:5000/api/v2/all-patients?userId=${userid}`,
       //allow for use of bearer authentication token
       { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
     )
       .then((res) => res.json())
       .then((result) => {
-        const { patients } = result;
-
-        if (patients.length !== 0) {
-          hasNoPatient = false;
+        if (result.patients.length > 0) {
+          setData(result.patients);
 
           context.dispatch({
             type: "PATIENT_LIST",
-            payload: patients,
+            payload: result.patients,
           });
         }
-        hasNoPatient = true;
       })
       .catch(() => {
         Swal.fire({
@@ -42,10 +39,12 @@ function Dashboard() {
           button: "Close",
         });
       });
+    setLoading(false);
   }
 
   useEffect(() => {
     if (context.state.userData) {
+      setLoading(true);
       getPatientList();
     } else {
       navigate("/login");
@@ -58,11 +57,38 @@ function Dashboard() {
     navigate(path);
   };
 
+  const handleDelete = (id) => {
+    const patientList = data.filter((patient) => patient._id !== id);
+    setData(patientList);
+    Swal.fire({
+      title: "Patient deleted successfully!",
+      icon: "success",
+    });
+  };
+
+  const noDataandLoading = (
+    <div style={{ display: "block", margin: "6% auto", width: "50%" }}>
+      <img src="https://i.ibb.co/K0ksSkr/Empty-icon.png" alt="Empty-icon" />
+    </div>
+  );
+
+  const noDataWithLoading = (
+    <div style={{ display: "block", margin: "6% auto", width: "50%" }}>
+      <p>Loading...</p>
+    </div>
+  );
+
+  const dataDisplay = (
+    <div className="patient-list-view">
+      <h4>List of Patients</h4>
+      <PatientListView patients={data} onDelete={handleDelete} />
+    </div>
+  );
+
   return (
     <div className="dashboard-container">
       <LeftSideBar className="left-bar" />
       <div className="middle-column">
-        {/* <SearchBar className="dashboard-search" /> */}
 
         <div style={{ display: "flex", marginTop: "7%" }}>
           <div className="helloDoc">
@@ -87,23 +113,9 @@ function Dashboard() {
           </div>
         </div>
 
-        {hasNoPatient ? (
-          <div style={{ display: "block", margin: "6% auto", width: "50%" }}>
-            <img
-              src="https://i.ibb.co/K0ksSkr/Empty-icon.png"
-              alt="Empty-icon"
-            />
-          </div>
-        ) : (
-          <div className="patient-list-view">
-            <h4>List of Patients</h4>
-            <ul id="patient-list-container">
-              {context.state.patientList.map((patient) => {
-                return <PatientListView key={patient._id} item={patient} />;
-              })}
-            </ul>
-          </div>
-        )}
+        {data.length === 0 && !loading && noDataandLoading}
+        {data.length === 0 && loading && noDataWithLoading}
+        {data.length > 0 && !loading && dataDisplay}
       </div>
       <RightSideBar className="right-bar" />
     </div>

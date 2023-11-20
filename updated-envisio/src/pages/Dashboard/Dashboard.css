@@ -44,3 +44,9 @@
 .swal2-popup {
   font-family: "Mulish Variable", sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+  .middle-column{
+    width: 70%;
+  }
+}

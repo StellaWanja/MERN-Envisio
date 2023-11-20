@@ -27,7 +27,7 @@ const AddNewPatient = () => {
     };
 
     fetch(
-      `https://real-gray-gosling-coat.cyclic.app/api/v2/new-patient?userId=${userid}`,
+      `http://localhost:5000/api/v2/new-patient?userId=${userid}`,
       {
         method: "POST",
         headers: {

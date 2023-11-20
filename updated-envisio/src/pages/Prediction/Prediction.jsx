@@ -27,7 +27,7 @@ const Prediction = () => {
       TumorSize: tumorSize,
     };
 
-    fetch(`https://real-gray-gosling-coat.cyclic.app/api/v2/predict/predict-test?patientId=${patientId}`, {
+    fetch(`http://localhost:5000/api/v2/predict/predict-test?patientId=${patientId}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -60,7 +60,7 @@ const PatientData = () => {
 
   const viewTestResults = () => {
     fetch(
-      `https://real-gray-gosling-coat.cyclic.app/api/v2/patient/all-tests?patientId=${patientId}`,
+      `http://localhost:5000/api/v2/patient/all-tests?patientId=${patientId}`,
       //allow for use of bearer authentication token
       { headers: { Authorization: `Bearer ${context.state.userData.token}` } }
     )
@@ -173,6 +173,7 @@ const PatientData = () => {
                 {context.state.currentPatient.FamilyMedicalHistory}
               </p>
             </div>
+            
           </div>
           <span className="personal-details-title">Test results</span>
           <div className="patient-data-test-container">
