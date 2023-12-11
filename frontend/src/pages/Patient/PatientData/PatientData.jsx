@@ -43,7 +43,7 @@ const PatientData = () => {
   const patientId = context.state.currentPatient._id;
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   const changeRoute = () => {
     let path = `/prediction?patientId=${patientId}`;

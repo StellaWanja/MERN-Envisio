@@ -14,7 +14,7 @@ const Prediction = () => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const patientId = context.state.currentPatient._id;
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
   
   const patientAge = new Date(context.state.currentPatient.DOB).getFullYear();
   const currentDate = new Date().getFullYear();

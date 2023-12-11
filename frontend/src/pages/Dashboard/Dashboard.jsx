@@ -14,7 +14,7 @@ function Dashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   function getPatientList() {
     const userid = context.state.userData.userID;

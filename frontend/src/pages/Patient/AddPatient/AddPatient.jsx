@@ -12,7 +12,7 @@ const AddNewPatient = () => {
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
   const navigate = useNavigate();  
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   const addPatient = ({firstname, lastname, maritalstatus, dob, height, weight, med_history}) => {
     const userid = context.state.userData.userID;

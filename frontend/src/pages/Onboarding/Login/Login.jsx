@@ -15,7 +15,8 @@ function Login() {
     register,
     handleSubmit
   } = useForm();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   const loginHandler = ({ email, password }) => {
     if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+\.[A-Za-z]/.test(email) !== true) {
@@ -27,7 +28,7 @@ function Login() {
       Password: password,
     };
 
-    fetch(`${import.meta.env.VITE_API_ENDPOINT_LOCALHOST}/auth/login`, {
+    fetch(`${apiURL}/auth/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

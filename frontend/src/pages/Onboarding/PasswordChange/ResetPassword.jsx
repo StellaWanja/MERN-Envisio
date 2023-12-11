@@ -10,7 +10,7 @@ import useMatchMedia from "../../../custom-hooks/useMatchMedia";
 function ResetPassword() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   const newpasswordHandler = async ({
     email,

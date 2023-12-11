@@ -9,7 +9,7 @@ const DoctorIcon = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   useEffect(() => {
     if (context.state.userData) {

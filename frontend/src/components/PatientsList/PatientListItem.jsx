@@ -9,7 +9,7 @@ import "../../styles/patientListView.css";
 const PatientListItem = ({ patient, onDelete }) => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   function viewPatientData() {
     fetch(

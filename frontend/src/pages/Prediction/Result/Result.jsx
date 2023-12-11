@@ -11,7 +11,7 @@ const Result = () => {
   const navigate = useNavigate();
   const context = useContext(AppContext);
   const patientId = context.state.currentPatient._id;
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   const saveResults = () => {
     let newResult = {

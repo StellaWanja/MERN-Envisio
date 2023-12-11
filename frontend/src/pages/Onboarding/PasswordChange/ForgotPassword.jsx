@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 function ForgotPassword() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
   // const [email, setEmail] = useState("");
   // const [user, setUser] = useState("");
   const forgotpasswordHandler = async ({ email }) => {

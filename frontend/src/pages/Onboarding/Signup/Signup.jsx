@@ -13,7 +13,7 @@ const Register = () => {
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  const apiURL = import.meta.env.VITE_API_ENDPOINT_LOCALHOST;
+  const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
   
   const registerUser = ({
     firstname,
