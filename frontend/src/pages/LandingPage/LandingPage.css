@@ -1,0 +1,277 @@
+.main {
+  background: #f8fafd;
+  position: absolute;
+  width: 100%;
+  font-family: "Mulish Variable", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Mulish Variable", sans-serif;
+  position: absolute;
+}
+
+h2 {
+  color: #212121;
+}
+
+/* WELCOME */
+.welcome {
+  margin: 80px 0 80px 100px;
+  max-width: 100%;
+  display: flex;
+  background-image: url("https://i.ibb.co/9HfjXmj/trafalgar-illustration-sec02-2.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+.heading {
+  font-weight: bolder;
+  font-size: 50px;
+  margin-bottom: 0;
+}
+.motto {
+  padding-top: 15px;
+  padding-bottom: 50px;
+  color: "#7A7A7A";
+  font-size: "20px";
+}
+.get-started {
+  border: none;
+  background-color: #458ff6;
+  padding: 15px 60px;
+  text-align: center;
+  color: #ffff;
+  font-family: inherit;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 0;
+}
+.start-button {
+  padding-top: 40px;
+}
+
+/* ABOUT */
+.about-section {
+  text-align: center;
+  padding-top: 100px;
+  margin: 0 5em;
+}
+.about-content {
+  color: #7a7a7a;
+}
+
+/* HOW IT WORKS */
+.how-it-works {
+  width: 80%;
+  margin: 80px auto;
+}
+
+.product-heading,
+.h-i-t-heading {
+  /* margin-bottom: 30px;
+  margin-left: 85px;
+  margin-right: 20px; */
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  color: #212121;
+}
+
+.content-wrapper {
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.content-container {
+  flex-direction: column;
+  background-color: #ffff;
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  width: 25%;
+  padding: 50px 40px;
+  /* gap: 20px; */
+}
+
+.vector {
+  width: 20%;
+  /* padding-bottom: 17px; */
+}
+.time {
+  width: 30%;
+}
+.data-st{
+  width: 25%;
+}
+
+.content-heading {
+  font-size: 20px;
+  font-weight: bolder;
+  color: #212121;
+}
+
+.content-body {
+  margin-top: 0;
+  color: #4d4d4d;
+}
+
+/* OUR PRODUCT */
+.blob {
+  width: 100%;
+  background-image: url("../../assets/blob.svg");
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+/* .product-image {
+  margin: 0 100px;
+  width: 100%;
+  border-radius: 20px;
+  
+} */
+/* .product {
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+} */
+
+.product-image {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+/* WHO CAN USE SECTION */
+.users-section {
+  margin: 50px;
+}
+.who-can {
+  text-align: center;
+  font-size: 30px;
+  color: #212121;
+  margin-top: 20px;
+}
+
+.healthcare-provider-section{
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 20px;
+}
+
+.healthcare-provider-img img {
+    width: 100%;
+}
+
+.healthcare-container {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  /* padding-left: 55%; */
+}
+.who-can-head {
+  font-size: 21px;
+}
+.grey-bar {
+  padding: 10px 0;
+}
+.who-can-desc {
+  color: #4d4d4d;
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+
+.signup {
+  color: #458ff6;
+  border: 1px solid #458ff6;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 15px 60px;
+  text-align: center;
+  background: inherit;
+}
+
+.medical-container {
+  padding-top: 0px;
+  /* padding-left: 50px; */
+}
+
+/* FOOTER SECTION */
+.footer{
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .welcome {
+    margin: 30px 0 50px 20px;
+    max-width: 100%;
+    display: flex;
+    gap: 7%;
+  }
+  .landing-image {
+    height: 20%;
+    width: 52%;
+  }
+  .headline {
+    margin-bottom: 0;
+  }
+  .heading {
+    font-size: 1.5em;
+  }
+  .motto{
+    padding-bottom: 0;
+  }
+  .start-button {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .get-started {
+    padding: 15px 60px;
+    font-size: 1em;
+  }
+  .content-container{
+    width: 60%
+  }
+  .healthcare-provider-section{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .healthcare-provider-img{
+    width: 70%;
+    margin: 0 auto;
+  }
+  .healthcare-container{
+    padding-bottom: 40px;
+
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .welcome {
+    background-image: none;
+  }
+  .content-container{
+    width: 60%
+  }
+  .healthcare-provider-img{
+    width: 100%;
+    margin: 0 auto;
+  }
+  .healthcare-container{
+    padding-top: 10px;
+  }
+  .healthcare-container{
+    padding-top: 10px;
+  }
+}

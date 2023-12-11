@@ -1,0 +1,98 @@
+.onboard-logo {
+  width: 30%;
+  height: 10%;
+}
+.onboarding-container {
+  font-family: "Mulish Variable", sans-serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 70%;
+  margin: auto;
+  margin-top: 5vh;
+}
+.onboarding-text{
+    text-align: center;
+}
+.form {
+  box-sizing: border-box;
+  height: 40vh;
+  padding: 10px;
+  width: 30vw;
+}
+
+.form-submit2 {
+  background-color: inherit;
+  border-radius: 12px;
+  border: 1px solid #458ff6;
+  box-sizing: border-box;
+  color: #458ff6;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 70%;
+  align-self: center;
+}
+
+.onboard-btn1 {
+  background-color: #458ff6;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 70%;
+  align-self: center;
+}
+
+.onboard-link1 {
+  text-decoration: none;
+  color: #eee;
+  padding-top: 15px;
+}
+
+.onboard-link2 {
+  text-decoration: none;
+  color: #458ff6;
+  padding-top: 15px;
+}
+
+.onboard-link1 {
+  text-decoration: none;
+  color: #eee;
+  padding-top: 15px;
+}
+.onboard-link2 {
+  text-decoration: none;
+  color: #458ff6;
+  padding-top: 15px;
+}
+.swal2-popup {
+  font-family: "Mulish Variable", sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+  .onboarding-container {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .onboarding-text{
+    padding: 0 15px;
+  }
+}

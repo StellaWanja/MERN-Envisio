@@ -1,0 +1,78 @@
+.dashboard-container {
+  background-color: #edf7ff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.middle-column {
+  font-family: "Mulish Variable", sans-serif;
+  /* width: 58%; */
+  margin: 0 22% 0 19%;
+  padding: 1%;
+  /* float: center; */
+  height: 100%;
+}
+
+.helloDoc {
+  width: 80%;
+}
+.dashboard-search {
+  width: 95%;
+  float: center;
+  margin-top: 2%;
+}
+
+.add-patient {
+  background: #458ff6;
+  border-radius: 10px;
+  margin-right: 11%;
+  padding: 20px 20px 0 30px;
+  border: none;
+  cursor: pointer;
+}
+
+#patient-list-container {
+  width: 100%;
+  padding: 0;
+  margin-top: 3%;
+}
+
+.swal2-popup {
+  font-family: "Mulish Variable", sans-serif;
+}
+
+.top-resp-img {
+  display: none;
+}
+
+@media screen and (max-width: 1028px) {
+  .middle-column {
+    margin: 0 28% 0 25%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .middle-column {
+    margin: 0 20px;
+    max-width: 100%;
+  }
+  .top-resp-img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  .doc-info-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .add-patient {
+    margin-top: 20px;
+  }
+}

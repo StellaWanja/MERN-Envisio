@@ -1,0 +1,128 @@
+.patient-data-wrapper {
+  font-family: "Mulish Variable", sans-serif;
+  width: 56%;
+  margin: 0 30% 0 18%;
+  padding: 1% 1% 0 1%;
+  float: center;
+  height: 100%;
+}
+
+.patient-data-container {
+  display: flex;
+  height: 40%;
+  width: 100%;
+}
+
+.patient-data-div {
+  background-color: #ffffff;
+  border-radius: 3px;
+  width: 48%;
+  height: 100%;
+  margin: auto;
+}
+
+#patient-data-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  font-size: smaller;
+  padding: 3%;
+}
+
+.list-item-data {
+  margin-left: 2%;
+}
+
+#medhistory-text {
+  padding: 2%;
+}
+.patient-data-test-container {
+  background-color: #ffffff;
+  border-radius: 5px;
+  min-height: 35%;
+  margin-top: 2%;
+}
+
+.personal-details-title {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.form-submit3 {
+  background-color: inherit;
+  border-radius: 12px;
+  border: 1px solid #458ff6;
+  box-sizing: border-box;
+  color: #458ff6;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 70%;
+  align-self: center;
+}
+
+#download-test-btn {
+  width: 30%;
+  float: left;
+  margin-top: 3vh;
+}
+
+.btn {
+  display: flex;
+  justify-content: end;
+}
+
+#add-test-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32%;
+  margin-top: 3vh;
+}
+
+.swal2-popup {
+  font-family: "Mulish Variable", sans-serif;
+}
+
+@media screen and (max-width: 1100px) {
+  .patient-data-wrapper {
+    margin-left: 22%;
+    margin-right: 20%;
+  }  
+  .patient-data-container{
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+  }
+  .patient-data-div{
+    width: 90%;
+    margin-top: 20px;
+  }
+  .data-test-wrapper{
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .patient-data-test-container{
+    width: 90%;
+  }
+  #add-test-btn {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .patient-data-wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #add-test-btn {
+    margin-right: 40px;
+  }
+}
