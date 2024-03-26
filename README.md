@@ -2,6 +2,8 @@
 
 This is a cancer prediction web app that identifies whether a tumor is malignant or benign based on age and tumor size. This web app is currently developed using the MERN stack, that is, MongoDB for the database, Express and NodeJS for the backend and React for the frontend. The project was initially developed using C# (.Net Core) and MSSQL, with the codebase which can be found at https://github.com/StellaWanja/Envisio-.NetCore. To view the website, go to https://envisio-frontend.vercel.app/.
 
+<img src='https://github.com/StellaWanja/MERN-Envisio/blob/main/frontend/src/assets/envisio.png' />
+
 **LIVE LINK**: https://envisio-frontend.vercel.app/
 
 ## The major functions of the web app
