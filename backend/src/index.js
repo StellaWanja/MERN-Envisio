@@ -1,7 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
+import 'dotenv/config';
 import authRoutes from "./routes/authRoutes.js";
 import patientAppRoutes from "./routes/patientAppRoutes.js";
 import testResultAppRoutes from "./routes/testResultAppRoutes.js";
@@ -10,7 +9,6 @@ import connectDB from "./db.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
-dotenv.config();
 
 // app.use(cors({ credentials: true }));
 app.use(cors());
