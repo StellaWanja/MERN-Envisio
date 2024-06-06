@@ -1,4 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
+import { FaHistory } from "react-icons/fa";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOnlinePrediction } from "react-icons/md";
 import "./LeftSideBar.css";
 
 export default function LeftSideBar() {
@@ -15,11 +18,7 @@ export default function LeftSideBar() {
       </Link>
       <ul className="links">
         <div className="sidebar-item">
-          <img
-            className="sidebar-icon"
-            src="https://i.ibb.co/7tH9Vwj/layout.png"
-            alt="dashboard-icon"
-          />
+         <MdOutlineSpaceDashboard style={{ fontSize: "1.5rem"}} />
           <NavLink
             className="sidebar-link"
             to="/dashboard"
@@ -34,7 +33,7 @@ export default function LeftSideBar() {
         </div>
 
         <div className="sidebar-item">
-          <img src="https://i.ibb.co/YbrywhC/clock.png" alt="clock" />
+          <FaHistory style={{ fontSize: "1.5rem"}} />
           <NavLink
             className="sidebar-link"
             to="/patient-data"
@@ -49,10 +48,7 @@ export default function LeftSideBar() {
         </div>
 
         <div className="sidebar-item">
-          <img
-            src="https://i.ibb.co/tqxbHP5/predictionicon.png"
-            alt="predictionicon"
-          />
+          <MdOnlinePrediction style={{ fontSize: "1.5rem"}} />
           <NavLink
             className="sidebar-link"
             to="/prediction"
