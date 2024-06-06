@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // import { useState } from 'react';
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../context/stateProvider";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,20 +8,24 @@ import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
 import "./Prediction.css";
 import Swal from "sweetalert2";
+import BeatLoader from "react-spinners/BeatLoader";
+import { override } from "../../styles/override";
 
 const Prediction = () => {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const patientId = context.state.currentPatient._id;
   const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
-  
+
   const patientAge = new Date(context.state.currentPatient.DOB).getFullYear();
   const currentDate = new Date().getFullYear();
   const ageDiff = currentDate - patientAge;
   const ageRef = useRef(0);
-  
-  const predictionHandler = ({tumorSize}) => {
+
+  const predictionHandler = ({ tumorSize }) => {
+    setLoading(true);
     // create data to be sent to the api for validation
     const age = ageRef.current.value;
     let userinput = {
@@ -39,6 +43,8 @@ const Prediction = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        setLoading(false);
+
         context.dispatch({
           type: "ADD_RESULT",
           payload: result,
@@ -46,6 +52,8 @@ const Prediction = () => {
         navigate(`/prediction-result?patientId=${patientId}`);
       })
       .catch(() => {
+        setLoading(false);
+
         Swal.fire({
           title: "Error!",
           text: "Unable to complete request. Please try again after some time",
@@ -61,7 +69,7 @@ const Prediction = () => {
     } else {
       ageRef.current.value = ageDiff;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.state.currentPatient, context.state.userData]);
 
   return (
@@ -117,7 +125,17 @@ const Prediction = () => {
                 id="prediction-submit-btn"
                 type="submit"
               >
-                Get Result
+                {loading && (
+                  <BeatLoader
+                    color="#B7DDFD"
+                    loading={loading}
+                    cssOverride={override}
+                    size={20}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                )}
+                {!loading && <p> Get Result</p>}
               </button>
             </div>
           </form>

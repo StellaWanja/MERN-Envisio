@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import "../../../styles/Register.css";
@@ -6,14 +7,17 @@ import Header from "../../../components/Header/Header";
 import SideColor from "../../../components/Sidecolor/Sidecolor";
 import useMatchMedia from "../../../custom-hooks/useMatchMedia";
 import Swal from "sweetalert2";
+import BeatLoader from "react-spinners/BeatLoader";
+import { override } from "../../../styles/override";
 
 function ForgotPassword() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
-  // const [email, setEmail] = useState("");
-  // const [user, setUser] = useState("");
+
   const forgotpasswordHandler = async ({ email }) => {
+    setLoading(true);
     let userEmail = {
       Email: email,
     };
@@ -28,8 +32,10 @@ function ForgotPassword() {
       .then((res) => res.json())
       .then((result) => {
         if (result.status === 200) {
+          setLoading(false);
           navigate("/reset-password");
         } else {
+          setLoading(false);
           new Swal.fire({
             title: "Oh Oh!",
             text: "The email doesn't exist, please register with Envisio!",
@@ -55,24 +61,36 @@ function ForgotPassword() {
               Input your registered email to initiate reset
             </p>
             <br />
-            <form onSubmit={handleSubmit(forgotpasswordHandler)}>
-              <div className="input-container">
-                <input
-                  id="email"
-                  className="input"
-                  type="text"
-                  {...register("email", { required: true })}
-                  placeholder=" "
-                />
-                <div className="cut" />
-                <label htmlFor="email" className="placeholder">
-                  Email Address
-                </label>
-              </div>
-              <button type="submit" className="form-submit-resetpassword">
-                Confirm
-              </button>
-            </form>
+            {loading && (
+              <BeatLoader
+                color="#B7DDFD"
+                loading={loading}
+                cssOverride={override}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            )}
+            {!loading && (
+              <form onSubmit={handleSubmit(forgotpasswordHandler)}>
+                <div className="input-container">
+                  <input
+                    id="email"
+                    className="input"
+                    type="text"
+                    {...register("email", { required: true })}
+                    placeholder=" "
+                  />
+                  <div className="cut" />
+                  <label htmlFor="email" className="placeholder">
+                    Email Address
+                  </label>
+                </div>
+                <button type="submit" className="form-submit-resetpassword">
+                  Confirm
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>

@@ -1,20 +1,32 @@
 /* eslint-disable no-undef */
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AppContext } from "../../../context/stateProvider";
 import LeftSideBar from "../../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../../components/Sidebar/RightSideBar/RightSideBar";
 import "./add-patient.css";
+import BeatLoader from "react-spinners/BeatLoader";
+import { override } from "../../../styles/override";
 
 const AddNewPatient = () => {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
-  const addPatient = ({firstname, lastname, maritalstatus, dob, height, weight, med_history}) => {
+  const addPatient = ({
+    firstname,
+    lastname,
+    maritalstatus,
+    dob,
+    height,
+    weight,
+    med_history,
+  }) => {
+    setLoading(true);
     const userid = context.state.userData.userID;
 
     let newpatient = {
@@ -28,19 +40,18 @@ const AddNewPatient = () => {
       User: userid,
     };
 
-    fetch(
-      `${apiURL}/new-patient?userId=${userid}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${context.state.userData.token}`,
-        },
-        body: JSON.stringify(newpatient),
-      }
-    )
+    fetch(`${apiURL}/new-patient?userId=${userid}`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${context.state.userData.token}`,
+      },
+      body: JSON.stringify(newpatient),
+    })
       .then((res) => res.json())
       .then((result) => {
+        setLoading(false);
+
         context.dispatch({
           type: "VIEW_PATIENT",
           payload: result.appUser,
@@ -56,6 +67,8 @@ const AddNewPatient = () => {
       })
       // eslint-disable-next-line no-unused-vars
       .catch((err) => {
+        setLoading(false);
+
         Swal.fire({
           title: "Error!",
           text: "Unable to complete request. Please try again after some time",
@@ -159,7 +172,17 @@ const AddNewPatient = () => {
           className="form-submit"
           id="add-patient-submit-btn"
         >
-          Save
+          {loading && (
+            <BeatLoader
+              color="#B7DDFD"
+              loading={loading}
+              cssOverride={override}
+              size={20}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          )}
+          {!loading && <p>Save</p>}
         </button>
       </form>
       <RightSideBar />

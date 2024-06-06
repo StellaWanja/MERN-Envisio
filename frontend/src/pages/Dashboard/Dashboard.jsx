@@ -7,16 +7,19 @@ import LeftSideBar from "../../components/Sidebar/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../components/Sidebar/RightSideBar/RightSideBar";
 import PatientListView from "../../components/PatientsList/PatientListView";
 import Swal from "sweetalert2";
+import BeatLoader from "react-spinners/BeatLoader";
+import { override } from "../../styles/override";
 
 function Dashboard() {
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState([]);
   const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
 
   function getPatientList() {
+    setLoading(true);
     const userid = context.state.userData.userID;
     fetch(
       `${apiURL}/all-patients?userId=${userid}`,
@@ -26,6 +29,7 @@ function Dashboard() {
       .then((res) => res.json())
       .then((result) => {
         if (result.patients.length > 0) {
+          setLoading(false);
           setData(result.patients);
 
           context.dispatch({
@@ -35,6 +39,7 @@ function Dashboard() {
         }
       })
       .catch(() => {
+        setLoading(false);
         Swal.fire({
           title: "Error!",
           text: "Unable to complete request. Please try again after some time",
@@ -42,7 +47,7 @@ function Dashboard() {
           button: "Close",
         });
       });
-    setLoading(false);
+    
   }
 
   useEffect(() => {
@@ -57,6 +62,7 @@ function Dashboard() {
   }, [context.state.userData, context.state.userData.userID]);
 
   const doctorInfo = () => {
+    setLoading(true);
     const userId = context.state.userData.userID;
     fetch(`${apiURL}/auth/user?userId=${userId}`, {
       headers: { Authorization: `Bearer ${context.state.userData.token}` },
@@ -65,7 +71,9 @@ function Dashboard() {
       .then((result) => {
         setUser(result.user);
       });
-  }
+      setLoading(false);
+
+  };
 
   function logOut() {
     context.dispatch({
@@ -97,7 +105,14 @@ function Dashboard() {
 
   const noDataWithLoading = (
     <div style={{ display: "block", margin: "6% auto", width: "50%" }}>
-      <p>Loading...</p>
+      <BeatLoader
+        color="#B7DDFD"
+        loading={loading}
+        cssOverride={override}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 
@@ -110,23 +125,26 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-
       <LeftSideBar className="left-bar" />
 
       <div className="top-resp-img">
-      <img src="https://i.ibb.co/7C52Mmv/logo.png" alt="logo" />
-      <div className="logout-container" onClick={logOut}>
-        <img src="https://i.ibb.co/qrptfQY/log-out.png" alt="log-out" />
-      </div>
+        <img src="https://i.ibb.co/7C52Mmv/logo.png" alt="logo" />
+        <div className="logout-container" onClick={logOut}>
+          <img src="https://i.ibb.co/qrptfQY/log-out.png" alt="log-out" />
+        </div>
       </div>
 
       <div className="middle-column">
-
-        <div className="doc-info-section" style={{ display: "flex", marginTop: "7%" }}>
+        <div
+          className="doc-info-section"
+          style={{ display: "flex", marginTop: "7%" }}
+        >
           <div className="helloDoc">
             <h2 style={{ fontSize: "30px" }}>
               Hello{" "}
-              {context.state.userData ? `${user.FirstName} ${user.LastName}` : ""}
+              {context.state.userData
+                ? `${user.FirstName} ${user.LastName}`
+                : ""}
             </h2>
             <span style={{ color: "#7A7A7A", fontSize: "20px" }}>
               Welcome to your Envisio Dashboard.
@@ -150,7 +168,6 @@ function Dashboard() {
         {data.length > 0 && !loading && dataDisplay}
       </div>
 
- 
       <RightSideBar className="right-bar" />
     </div>
   );

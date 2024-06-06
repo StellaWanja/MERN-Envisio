@@ -1,20 +1,23 @@
 /* eslint-disable no-undef */
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../../context/stateProvider";
 import { useForm } from "react-hook-form";
+import BeatLoader from "react-spinners/BeatLoader";
 import Swal from "sweetalert2";
 import "../../../styles/Register.css";
 import Header from "../../../components/Header/Header";
 import SideColor from "../../../components/Sidecolor/Sidecolor";
 import useMatchMedia from "../../../custom-hooks/useMatchMedia";
+import { override } from "../../../styles/override";
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_API_ENDPOINT_HOSTED;
-  
+
   const registerUser = ({
     firstname,
     lastname,
@@ -23,6 +26,7 @@ const Register = () => {
     password,
     confirmpassword,
   }) => {
+    setLoading(true);
     //confirms that email format is valid
     if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+\.[A-Za-z]/.test(email) !== true) {
       return Swal.fire({
@@ -59,6 +63,7 @@ const Register = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.status === 400) {
+          setLoading(false);
           return Swal.fire({
             title: result.title,
             text: result.message,
@@ -69,7 +74,7 @@ const Register = () => {
             type: "LOGIN",
             payload: result,
           });
-
+          setLoading(false);
           Swal.fire({
             title: "Registration Successful",
             text: " ",
@@ -81,6 +86,7 @@ const Register = () => {
 
       // eslint-disable-next-line no-unused-vars
       .catch((err) => {
+        setLoading(false);
         Swal.fire({
           title: "Unsuccessful!",
           text: err.message,
@@ -92,97 +98,109 @@ const Register = () => {
   return (
     <>
       <Header />
-       {isDesktopResolution && <SideColor />}
+      {isDesktopResolution && <SideColor />}
 
       <div id="grid-container">
         <div className="register-form-container column">
           <div className="form">
             <div className="main_title">Create Account</div>
-            <form onSubmit={handleSubmit(registerUser)}>
-              <div className="input-container">
-                <input
-                  id="firstname"
-                  className="input"
-                  type="text"
-                  {...register("firstname", { required: true })}
-                  placeholder=" "
-                />
+            {loading && (
+              <BeatLoader
+                color="#B7DDFD"
+                loading={loading}
+                cssOverride={override}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            )}
+            {!loading && (
+              <form onSubmit={handleSubmit(registerUser)}>
+                <div className="input-container">
+                  <input
+                    id="firstname"
+                    className="input"
+                    type="text"
+                    {...register("firstname", { required: true })}
+                    placeholder=" "
+                  />
 
-                {/* <div className="cut" /> */}
-                <label htmlFor="firstname" className="placeholder">
-                  First Name
-                </label>
-              </div>
-              <div className="input-container">
-                <input
-                  id="lastname"
-                  className="input"
-                  type="text"
-                  {...register("lastname", { required: true })}
-                  placeholder=" "
-                />
+                  {/* <div className="cut" /> */}
+                  <label htmlFor="firstname" className="placeholder">
+                    First Name
+                  </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    id="lastname"
+                    className="input"
+                    type="text"
+                    {...register("lastname", { required: true })}
+                    placeholder=" "
+                  />
 
-                <div className="cut" />
-                <label htmlFor="lastname" className="placeholder">
-                  Last Name
-                </label>
-              </div>
-              <div className="input-container">
-                <input
-                  id="hospname"
-                  className="input"
-                  type="text"
-                  {...register("hospname", { required: true })}
-                  placeholder=" "
-                />
-                <div className="cut" />
-                <label htmlFor="hospname" className="placeholder">
-                  Hospital Name
-                </label>
-              </div>
-              <div className="input-container">
-                <input
-                  id="email"
-                  className="input"
-                  type="email"
-                  {...register("email", { required: true })}
-                  placeholder=" "
-                />
-                <div className="cut" />
-                <label htmlFor="email" className="placeholder">
-                  Email Address
-                </label>
-              </div>
-              <div className="input-container">
-                <input
-                  id="password"
-                  className="input"
-                  type="password"
-                  {...register("password", { required: true })}
-                  placeholder=" "
-                />
-                <div className="cut" />
-                <label htmlFor="Password" className="placeholder">
-                  Password
-                </label>
-              </div>
-              <div className="input-container">
-                <input
-                  id="confirmpassword"
-                  className="input"
-                  type="password"
-                  {...register("confirmpassword", { required: true })}
-                  placeholder=" "
-                />
-                <div className="cut" />
-                <label htmlFor="confirmpassword" className="placeholder">
-                  Confirm Password
-                </label>
-              </div>
-              <button type="submit" className="form-submit">
-                Sign Up
-              </button>
-            </form>
+                  <div className="cut" />
+                  <label htmlFor="lastname" className="placeholder">
+                    Last Name
+                  </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    id="hospname"
+                    className="input"
+                    type="text"
+                    {...register("hospname", { required: true })}
+                    placeholder=" "
+                  />
+                  <div className="cut" />
+                  <label htmlFor="hospname" className="placeholder">
+                    Hospital Name
+                  </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    id="email"
+                    className="input"
+                    type="email"
+                    {...register("email", { required: true })}
+                    placeholder=" "
+                  />
+                  <div className="cut" />
+                  <label htmlFor="email" className="placeholder">
+                    Email Address
+                  </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    id="password"
+                    className="input"
+                    type="password"
+                    {...register("password", { required: true })}
+                    placeholder=" "
+                  />
+                  <div className="cut" />
+                  <label htmlFor="Password" className="placeholder">
+                    Password
+                  </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    id="confirmpassword"
+                    className="input"
+                    type="password"
+                    {...register("confirmpassword", { required: true })}
+                    placeholder=" "
+                  />
+                  <div className="cut" />
+                  <label htmlFor="confirmpassword" className="placeholder">
+                    Confirm Password
+                  </label>
+                </div>
+                <button type="submit" className="form-submit">
+                  Sign Up
+                </button>
+              </form>
+            )}
             <p className="to_login">
               {" "}
               Already have an account?
